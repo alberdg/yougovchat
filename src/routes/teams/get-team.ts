@@ -5,7 +5,7 @@ import { NotFoundError } from '../../errors/not-found-error';
 const router = Router();
 
 router.get('/teams/:name',async (req: Request, res: Response) => {
-  const team: Team = await teamsService.findTeam(req.params.name);
+  const team: Team = await teamsService.findTeamByName(req.params.name);
   if (!team) {
     throw new NotFoundError();
   }

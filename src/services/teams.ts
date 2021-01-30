@@ -20,7 +20,7 @@ class TeamsService {
     return this._teams
   }
 
-  async findTeam (team: string): Promise<Team> {
+  async findTeamByName (team: string): Promise<Team> {
     if (!team) {
       return null!;
     }
@@ -28,6 +28,20 @@ class TeamsService {
     const lowerCaseTeam: string = team.toLowerCase();
     return this._teams.find((team: Team) => team.name.toLowerCase() === lowerCaseTeam)!;
   }
+
+  async createTeam (team: Team): Promise<Team> {
+    if (!team) {
+      return null!;
+    }
+    const teamFound: Team = await this.findTeamByName(team.name);
+    if (teamFound) {
+      return teamFound;
+    }
+    this._teams.push(team);
+    return team;
+  }
+
+
 }
 
 export const teamsService: TeamsService = new TeamsService();
