@@ -7,6 +7,7 @@ import { NotFoundError } from './errors/not-found-error';
 import { indexTeamsRouter } from './routes/teams';
 import { getTeamRouter } from './routes/teams/get-team';
 import { createTeamRouter } from './routes/teams/new-team';
+import { updateTeamRouter } from './routes/teams/update-team';
 
 const app = express();
 app.use(json());
@@ -14,6 +15,7 @@ app.use(helmet());
 app.use(indexTeamsRouter);
 app.use(getTeamRouter);
 app.use(createTeamRouter);
+app.use(updateTeamRouter);
 
 app.all('*', (req: Request, res: Response) => {
   throw new NotFoundError();
