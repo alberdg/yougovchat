@@ -1,8 +1,9 @@
 import { Team } from '../../models/team';
 import { CreateTeamResponse } from '../../models/create-team-response';
 import { teamsService } from '../teams';
-import { WATFORD_ITEM, NOTTINGHAM_FOREST_ITEM } from '../../constants';
+import { WATFORD_ITEM, NOTTINGHAM_FOREST_ITEM, UPDATED_WATFORD_ITEM } from '../../constants';
 
+afterEach(() => teamsService.clearTeams());
 it('Retrieves a list of teams', async () => {
   const teams: Team[] = await teamsService.fetchTeams();
   expect(Array.isArray(teams)).toBeTruthy();
@@ -35,4 +36,17 @@ it('Tries to create an existing team', async () => {
   expect(teamResponse.team).not.toBeNull();
   expect(teamResponse.team.name).toBe(name);
   expect(teamResponse.team.img).toBe(img);
+});
+
+it('Updates existing team image', async () => {
+  const team: Team = await teamsService.updateTeam(UPDATED_WATFORD_ITEM);
+  const { name, img } = UPDATED_WATFORD_ITEM;
+  expect(team).not.toBeNull();
+  expect(team.name).toBe(name);
+  expect(team.img).toBe(img);
+});
+
+it('Returns null if team to update does not exist', async () => {
+  const team: Team = await teamsService.updateTeam(NOTTINGHAM_FOREST_ITEM);
+  expect(team).toBeNull();
 });
