@@ -10,6 +10,6 @@ export const NOTTINGHAM_FOREST_ITEM: Team = {
 };
 
 export const UPDATED_WATFORD_ITEM: Team = {
-  name: 'Nottingham Forest',
+  name: 'Watford',
   img: 'https://ssl.gstatic.com/onebox/media/sports/logos/Zr6FbE-8pDH7UBpWCO8U9A_96x96_updated.png'
 };

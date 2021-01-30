@@ -37,7 +37,7 @@ it('Tries to create an existing team', async () => {
   expect(teamResponse.team.img).toBe(img);
 });
 
-it('Updates existing team image', async () => {
+it.only('Updates existing team image', async () => {
   const team: Team = await teamsService.updateTeam(UPDATED_WATFORD_ITEM);
   const { name, img } = UPDATED_WATFORD_ITEM;
   expect(team).not.toBeNull();
@@ -46,6 +46,6 @@ it('Updates existing team image', async () => {
 });
 
 it('Returns null if team to update does not exist', async () => {
-  const team: Team = await teamsService.updateTeam(UPDATED_WATFORD_ITEM);
+  const team: Team = await teamsService.updateTeam(NOTTINGHAM_FOREST_ITEM);
   expect(team).toBeNull();
 });
