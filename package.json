@@ -5,7 +5,11 @@
   "main": "index.js",
   "scripts": {
     "start": "ts-node src/index.ts",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --watchAll --no-cache"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node"
   },
   "repository": {
     "type": "git",
@@ -20,6 +24,7 @@
   "homepage": "https://github.com/alberdg/yougovchat#readme",
   "dependencies": {
     "@types/express": "^4.17.11",
+    "axios": "^0.21.1",
     "express": "^4.17.1",
     "express-validator": "^6.9.2",
     "helmet": "^4.4.1",
