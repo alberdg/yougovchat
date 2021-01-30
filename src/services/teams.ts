@@ -6,9 +6,10 @@ class TeamsService {
   private _teams: Team[];
 
   constructor () {
-    this._teams = null as any;
+    this._teams = null!;
   }
-  
+
+
   async fetchTeams(): Promise<Team[]> {
     if (!Array.isArray(this._teams)) {
       const response: AxiosResponse<Team[]> = await axios(TEAMS_GIST_URL);
@@ -18,5 +19,15 @@ class TeamsService {
     }
     return this._teams
   }
+
+  async findTeam (team: string): Promise<Team> {
+    if (!team) {
+      return null!;
+    }
+    await this.fetchTeams();
+    const lowerCaseTeam: string = team.toLowerCase();
+    return this._teams.find((team: Team) => team.name.toLowerCase() === lowerCaseTeam)!;
+  }
 }
+
 export const teamsService: TeamsService = new TeamsService();
