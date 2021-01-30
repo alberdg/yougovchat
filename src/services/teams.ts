@@ -54,6 +54,10 @@ class TeamsService {
     }
     return null!;
   }
+
+  clearTeams (): void {
+    this._teams.clear();
+  }
 }
 
 export const teamsService: TeamsService = new TeamsService();
