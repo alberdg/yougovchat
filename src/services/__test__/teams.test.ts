@@ -3,6 +3,7 @@ import { CreateTeamResponse } from '../../models/create-team-response';
 import { teamsService } from '../teams';
 import { WATFORD_ITEM, NOTTINGHAM_FOREST_ITEM, UPDATED_WATFORD_ITEM } from '../../constants';
 
+afterEach(() => teamsService.clearTeams());
 it('Retrieves a list of teams', async () => {
   const teams: Team[] = await teamsService.fetchTeams();
   expect(Array.isArray(teams)).toBeTruthy();
@@ -37,7 +38,7 @@ it('Tries to create an existing team', async () => {
   expect(teamResponse.team.img).toBe(img);
 });
 
-it.only('Updates existing team image', async () => {
+it('Updates existing team image', async () => {
   const team: Team = await teamsService.updateTeam(UPDATED_WATFORD_ITEM);
   const { name, img } = UPDATED_WATFORD_ITEM;
   expect(team).not.toBeNull();
