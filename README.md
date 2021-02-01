@@ -53,7 +53,7 @@ The application has a typical 3 layer structure:
 
 - Routes
 
-Where teams routes are provided, I tried to implement the least business login in these as it should live on services
+Where teams routes are provided, I tried to implement the least business logic in these as it should live on services
 
 - Services
 
@@ -89,4 +89,4 @@ Chose Axios instead of fetch because it performs automatic transforms of JSON da
 
 ## Authors
 
-* **Alberto Godar
+* **Alberto Godar**
