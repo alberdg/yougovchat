@@ -4,7 +4,7 @@
   "description": "You Gov Chat Test",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node src/index.ts",
+    "start": "npm install && ts-node src/index.ts",
     "test": "jest --watchAll --no-cache"
   },
   "jest": {
