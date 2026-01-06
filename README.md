@@ -1,4 +1,12 @@
-# YouGovChat Technical Test
+# YouGovChat – Backend REST API (Technical Test)
+
+This project was built as a backend technical test to demonstrate:
+- API design and HTTP semantics
+- Separation of concerns
+- Testable business logic
+- Production-minded structure for a small service
+
+Although intentionally simple, the code is structured as it would be in a real-world backend service.
 
 It is required to provide a REST API for Premier League Football teams. It provided the enpoints below to interact with the teams:
 
@@ -47,45 +55,43 @@ The server will start on port 3001 by default unless environment variable YOUGOV
 
 ## Application Design
 
-### Design
+## Design decisions
 
-The application has a typical 3 layer structure:
+### Layered architecture
+The application follows a simple 3-layer structure (routes, services, models) to keep HTTP concerns separated from business logic. This makes the service easier to test and evolve.
 
-- Routes
+### Idempotent POST
+The POST /teams endpoint is idempotent: creating an existing team returns HTTP 200 instead of duplicating data. This simplifies client retries and avoids unintended duplication.
 
-Where teams routes are provided, I tried to implement the least business logic in these as it should live on services
+### Error handling and validation
+Request validation and error responses are explicit and consistent, returning appropriate HTTP status codes (400, 404, 200, 201).
 
-- Services
+## API endpoints
 
-teams.ts is a singleton class which provides the application business logic. It relies on the team models to provide the requested functionality
+| Method | Endpoint            | Description                          |
+|-------|---------------------|--------------------------------------|
+| GET   | /teams              | Returns all teams                    |
+| GET   | /teams/:team_name   | Returns a team by name               |
+| POST  | /teams              | Creates a team (idempotent)          |
+| PATCH | /teams              | Updates a team's image               |
 
-- Models
+## Testing strategy
 
-* team.ts Is the representation of a single team
+- Service tests focus on business logic and edge cases.
+- Route tests validate HTTP behavior, status codes and payloads.
 
-* create-team-response Contains a team and a numeric http response.
+This separation keeps business rules testable without coupling them to the HTTP layer.
 
-### Tests
+## Production considerations
 
-There are a few unit tests for routes and services. Routes tests validate responses and services tests are responsible of validating the behavior of team service.
+If this service were to evolve into a production system, the next steps would be:
 
-### Technical choices
-
-- Express
-https://www.npmjs.com/package/express
-
-I chose Express since the test had to be completed using typescript so Express.js is a well known, stable and community supported module to build a REST API.
-
-- Helmet
-https://www.npmjs.com/package/helmet
-
-As its documentation says it is not a silver bullet but it helps to improve security of Express server by setting some important headers.
-
-- Axios
-https://www.npmjs.com/package/axios
-
-Chose Axios instead of fetch because it performs automatic transforms of JSON data.
-
+- Introduce a persistence layer (PostgreSQL or DynamoDB) behind a repository interface
+- Add request validation using a schema-based approach (e.g. Zod or Joi)
+- Introduce pagination and filtering for GET /teams
+- Add structured logging and request correlation IDs
+- Add integration tests and contract tests
+- Containerize the service and add CI checks
 
 ## Authors
 
