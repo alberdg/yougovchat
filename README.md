@@ -20,8 +20,6 @@ It is required to provide a REST API for Premier League Football teams. It provi
 
 ## Application Design
 
-## Design decisions
-
 ### Layered architecture
 The application follows a simple 3-layer structure (routes, services, models) to keep HTTP concerns separated from business logic. This makes the service easier to test and evolve.
 
