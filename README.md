@@ -18,41 +18,6 @@ It is required to provide a REST API for Premier League Football teams. It provi
 
 - PATCH /teams Will modify a team's image if the team exist and will return an HTTP 200 code along with the modified team. If the team did not exist it will return an HTTP 404 and if the body received is invalid it will will return an HTTP 400 code.
 
-## Getting Started
-
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
-
-```
-git clone https://github.com/alberdg/yougovchat.git
-```
-
-### Prerequisites
-
-- Node.js
-- npm
-
-### Installing
-
-```
-npm start
-```
-
-Once the server is started it will display a console message saying it is listening on the given port.
-
-You could check it is running by visiting http://localhost:{port}/teams or by running a curl request.
-
-## Running the tests
-
-In order to run the unit tests provided you need to execute the command below:
-
-```
-npm run test
-```
-
-## Deployment
-
-The server will start on port 3001 by default unless environment variable YOUGOV_CHAT_PORT exists in which case will take its value
-
 ## Application Design
 
 ## Design decisions
@@ -92,6 +57,41 @@ If this service were to evolve into a production system, the next steps would be
 - Add structured logging and request correlation IDs
 - Add integration tests and contract tests
 - Containerize the service and add CI checks
+
+## Getting Started
+
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+
+```
+git clone https://github.com/alberdg/yougovchat.git
+```
+
+### Prerequisites
+
+- Node.js
+- npm
+
+### Installing
+
+```
+npm start
+```
+
+Once the server is started it will display a console message saying it is listening on the given port.
+
+You could check it is running by visiting http://localhost:{port}/teams or by running a curl request.
+
+## Running the tests
+
+In order to run the unit tests provided you need to execute the command below:
+
+```
+npm run test
+```
+
+## Deployment
+
+The server will start on port 3001 by default unless environment variable YOUGOV_CHAT_PORT exists in which case will take its value
 
 ## Authors
 
